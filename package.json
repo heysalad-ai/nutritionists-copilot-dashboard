@@ -51,6 +51,10 @@
     "vite": "^6.4.4"
   },
   "overrides": {
-    "postcss-selector-parser": "7.1.6"
+    "postcss-selector-parser": "7.1.6",
+    "@grpc/grpc-js": "1.13.7"
+  },
+  "//": {
+    "overrides": "postcss-selector-parser: pinned for GHSA fix (transitive via tailwindcss 3). @grpc/grpc-js: @firebase/firestore pins ~1.9.0 which is vulnerable (GHSA-m9gg-hp2v-232j, GHSA-f596-whhp-79r4); 1.13.7 is the first patched line and is API-compatible. Remove when @firebase/firestore moves off ~1.9.0."
   }
 }

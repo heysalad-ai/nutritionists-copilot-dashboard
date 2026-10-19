@@ -5,7 +5,7 @@ export const createDatabaseRef = async (path: string) => {
   return { path };
 };
 
-export const writeData = async (path: string, data: any): Promise<void> => {
+export const writeData = async (path: string, data: Record<string, unknown>): Promise<void> => {
   try {
     const { error } = await supabase
       .from(path)
@@ -18,7 +18,7 @@ export const writeData = async (path: string, data: any): Promise<void> => {
   }
 };
 
-export const readData = async (path: string, userId: string): Promise<any> => {
+export const readData = async <T = Record<string, unknown>>(path: string, userId: string): Promise<T> => {
   try {
     const { data, error } = await supabase
       .from(path)
@@ -27,7 +27,7 @@ export const readData = async (path: string, userId: string): Promise<any> => {
       .single();
 
     if (error) throw error;
-    return data;
+    return data as T;
   } catch (error) {
     console.error('Error reading from database:', error);
     throw error;
